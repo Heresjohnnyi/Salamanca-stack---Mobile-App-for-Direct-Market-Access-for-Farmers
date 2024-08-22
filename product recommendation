@@ -1,0 +1,34 @@
+data class Product(val name: String, val farmerName: String, val location: String)
+
+fun main() {
+    // Sample product list
+    val products = listOf(
+        Product("Fresh Apples", "John's Farm", "California"),
+        Product("Organic Bananas", "Green Valley", "Florida"),
+        Product("Orange Juice", "Citrus Delight", "Texas"),
+        Product("Grapes", "Vineyard Estate", "California"),
+        Product("Pineapples", "Tropical Farms", "Hawaii"),
+        Product("Mangoes", "Sunny Orchards", "Florida"),
+        Product("Strawberries", "Berry Patch", "Oregon")
+    )
+
+    println("Enter your search query: ")
+    val query = readLine()?.toLowerCase() ?: ""
+
+    val recommendations = searchRecommendations(query, products)
+
+    if (recommendations.isNotEmpty()) {
+        println("Search Recommendations:")
+        recommendations.forEach { println("${it.name} from ${it.farmerName}, ${it.location}") }
+    } else {
+        println("No recommendations found.")
+    }
+}
+
+fun searchRecommendations(query: String, products: List<Product>): List<Product> {
+    return products.filter { 
+        it.name.toLowerCase().contains(query) ||
+        it.farmerName.toLowerCase().contains(query) ||
+        it.location.toLowerCase().contains(query)
+    }
+}
