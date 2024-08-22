@@ -1,0 +1,11 @@
+data class Product(val name: String, val price: Double, val quantity: Int)
+
+// Function to add a product to a list
+fun addProductToList(productList: MutableList<Product>, newProduct: Product) {
+    productList.add(newProduct)
+}
+
+// Example usage
+val products = mutableListOf<Product>()
+val newProduct = Product("Organic Tomatoes", 2.99, 10)
+addProductToList(products, newProduct)
